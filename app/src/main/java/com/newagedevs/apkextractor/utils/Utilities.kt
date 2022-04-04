@@ -23,7 +23,7 @@ class Utilities {
 
     companion object {
 
-        private const val STORAGE_PERMISSION_CODE = 1008
+        const val STORAGE_PERMISSION_CODE = 1008
 
         fun checkPermission(activity: AppCompatActivity): Boolean {
             var permissionGranted = false
@@ -74,12 +74,13 @@ class Utilities {
             val originalFile = File(apk.appInfo.sourceDir)
             val extractedFile: File = getApkFile(apk)
 
-            try {
+            extracted = try {
                 //FileUtils.copyFile(originalFile, extractedFile)
                 originalFile.copyTo(extractedFile)
-                extracted = true
+                true
             } catch (e: Exception) {
                 Log.d("test", "problem - " + e.message)
+                false
             }
 
             return extracted
